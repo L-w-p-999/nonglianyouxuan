@@ -1,0 +1,29 @@
+{
+  "name": "nonglianyouxuan",
+  "version": "2.1.0",
+  "description": "微信小程序商城，微信小程序微店",
+  "main": "app.js",
+  "dependencies": {
+    "apifm-wxapi": "^3.36.0",
+    "wxa-plugin-canvas": "^1.1.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thundersword/fire-shop-lite"
+  },
+  "keywords": [
+    "微店",
+    "小店",
+    "微商城"
+  ],
+  "author": "gooking",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thundersword/fire-shop-lite/issues"
+  },
+  "homepage": "https://github.com/thundersword/fire-shop-lite#readme"
+}

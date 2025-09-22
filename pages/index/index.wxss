@@ -1,0 +1,190 @@
+page {
+	background: #f2f2f2;
+}
+
+/* 需求1：降低banner高度 */
+.swiper-container {
+	height: 500rpx; /* 从750rpx降低到500rpx */
+}
+
+.swiper-container .screen-swiper {
+	height: 500rpx; /* 从750rpx降低到500rpx */
+}
+
+/* 需求2：为所有盒子添加圆角 */
+.index-menu-bg {
+	border-radius: 20rpx; /* 添加圆角 */
+	/* position: relative;
+	width: 710rpx;
+	left: 20rpx;
+	margin-top: -50rpx;
+	background: linear-gradient(#fff,#f2f2f2);
+	border-top-left-radius: 15rpx;
+	border-top-right-radius: 15rpx; */
+}
+
+.index-menu .menu-list {
+	width: 172.5rpx;
+	text-align: center;
+	padding: 20rpx 0;
+	border-radius: 15rpx; /* 添加圆角 */
+}
+
+.index-menu .menu-list image {
+	height: 80rpx;
+	width: 80rpx;
+	display: inline-block;
+}
+
+.index-menu-bg .index-adv image {
+	width: 100%;
+	height: 172.5rpx;
+}
+
+.index-menu .menu-list .text {
+	font-size: 28rpx;
+	color: #333333;
+}
+
+.index-hot {
+	margin-top: 10rpx;
+}
+
+.index-hot .hot-item {
+	width: 340rpx;
+	height: 260rpx;
+	margin-bottom: 10rpx;
+	border-radius: 20rpx; /* 添加圆角 */
+	overflow: hidden; /* 确保图片圆角生效 */
+}
+
+/* 需求4：加大图片圆角 */
+.index-hot .hot-item image {
+	width: 100%;
+	height: 100%;
+	border-radius: 20rpx; /* 加大图片圆角 */
+}
+
+.goods-container {
+	width: 100%;
+	background: #fff;
+	border-radius: 20rpx; /* 添加圆角 */
+	
+}
+
+.goods-title {
+	text-align: center;
+	height: 90rpx;
+	line-height: 90rpx;
+	color: #333;
+	font-size: 32rpx;
+	display: flex;
+	justify-content: center;
+}
+
+.goods-title .text {
+	display: inline-block;
+	margin-left: 10rpx;
+	margin-right: 10rpx;
+	font-weight: bold; /* 增加文本粗度 */
+}
+
+.goods-title .line {
+	width: 20rpx;
+	border-top: 1rpx solid #b4282d;
+	margin-top: 45rpx;
+	height: 1rpx;
+	border-radius: 10rpx; /* 为line添加圆角 */
+}
+
+.goods-title image {
+	width: 36rpx;
+	height: 36rpx;
+	margin-bottom: -6rpx;
+	margin-left: 10rpx;
+}
+
+.list-item {
+	width: 330rpx;
+	height: 480rpx;
+	overflow: hidden;
+	margin-bottom: 20rpx;
+	border-radius: 20rpx; /* 添加圆角 */
+}
+
+/* 需求4：加大图片圆角 */
+.list-item image {
+	width: 100%;
+	height: 330rpx;
+	border-radius: 20rpx; /* 从6rpx加大到20rpx */
+}
+
+.goods-list-title {
+	font-size: 30rpx;
+	color: #333;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.goods-list-text {
+	font-size: 24rpx;
+	color: #999;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.goods-list-money {
+	font-size: 30rpx;
+	color: #ab2b2b;
+}
+
+.pingtuan .scroll {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	height: 530rpx;
+	background: #fff;
+	width: 100%;
+	border-radius: 20rpx; /* 添加圆角 */
+}
+
+.pingtuan .scroll .scroll-item {
+	width: 400rpx;
+	height: 470rpx;
+	border-radius: 20rpx; /* 添加圆角 */
+}
+
+.pingtuan .scroll .scroll-item .thumb {
+	height: 280rpx;
+	width: 400rpx;
+	border-radius: 20rpx; /* 添加圆角 */
+	overflow: hidden; /* 确保图片圆角生效 */
+}
+
+/* 需求4：加大图片圆角 */
+.pingtuan .scroll .scroll-item .thumb image {
+	border-radius: 20rpx; /* 加大图片圆角 */
+}
+
+.pingtuan .scroll .scroll-item .text view {
+	line-height: 50rpx;
+}
+
+.live-ad {
+	border-radius: 20rpx; /* 添加圆角 */
+	overflow: hidden; /* 确保图片圆角生效 */
+}
+
+/* 需求4：加大图片圆角 */
+.live-ad image {
+	height: 120rpx;
+	width: 690rpx;
+	border-radius: 20rpx; /* 加大图片圆角 */
+}
+
+/* 需求3：去除红色按钮的圆角 */
+.cu-btn.round.bg-red {
+	border-radius: 0 !important; /* 去除圆角 */
+}

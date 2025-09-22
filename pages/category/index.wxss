@@ -1,0 +1,492 @@
+/**index.wxss**/
+
+page {
+  height: 100%;
+  min-height: 100%;
+  background-color: #fff;
+}
+
+.container {
+  height: 100%;
+  display: block;
+}
+
+.iphoneTop {
+  line-height: 0;
+}
+
+.type-header-menu {
+  height: 130rpx;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 99999;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.type-header-menu .type-search {
+  width: 70%;
+  margin-left: 30rpx;
+  position: relative;
+  height: 66rpx;
+  overflow: hidden;
+  margin-top: 60rpx;
+}
+
+.type-header-menu .type-search image {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 14rpx;
+  left: 16rpx;
+}
+
+.type-header-menu .type-search .input {
+  width: 80%;
+  height: 60rpx;
+  background-color: #f5f5f5;
+  border-radius: 50rpx;
+  font-size: 32rpx; /* 原28rpx + 4rpx */
+  padding-left: 65rpx;
+  display: inline-block;
+  transition: all 0.6s;
+}
+
+.type-header-menu .type-search .active {
+  width: 60%;
+  transition: all 0.6s;
+}
+
+.type-header-menu .type-search .header-search-btn {
+  float: right;
+  font-size: 34rpx; /* 原30rpx + 4rpx */
+  line-height: 60rpx;
+  color: #b5272d;
+  margin-right: 46rpx;
+}
+
+.iphoneTop .type-header-menu {
+  height: 180rpx;
+}
+
+.iphoneTop .type-search {
+  margin-top: 100rpx;
+}
+
+.type-container-boxx {
+  width: 100%;
+  height: 90vh;
+  position: fixed;
+  top: 10vh;
+  left: 0;
+}
+
+.iphoneTop .type-container-boxx {
+  top: 12vh;
+  height: 88vh;
+}
+.scroll-view-container{
+	width: 25%;
+	height: 100%;
+	border-right: 1px solid #f5f5f5;
+	background-color: #fff;
+	display: inline-block;
+	float: left;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+.scroll-view-container .type-container {
+  width: 110%;
+  height: 100%;
+  padding-right: 10%;
+}
+
+.type-box:nth-child(1) {
+  margin-top: 20rpx;
+}
+
+.type-box {
+  padding: 5px 0;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.type-navbar-item {
+  font-size: 32rpx; /* 原28rpx + 4rpx */
+  text-align: center;
+  border-left: 2px solid #fff;
+}
+
+.type-item-on {
+  border-left: 2px solid #ab2b2b;
+  color: #ab2b2b;
+  font-size: 34rpx; /* 原30rpx + 4rpx */
+}
+.list-container{
+	width: 75%;
+	height: 100%;
+	float: left;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+.list-container .type-list {
+	overflow: scroll;
+	width: 110%;
+	height: 100%;
+	box-sizing: border-box;
+	padding-right: 10%;
+}
+
+.goods-title {
+  font-size: 34rpx; /* 原30rpx + 4rpx */
+  white-space: nowrap;
+}
+
+.swiper-container {
+  width: 95%;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.swiper_box, .slide-image, .swiper_box {
+  width: 100%;
+  height: 115px;
+  border-radius: 10px; /* 添加圆角 */
+}
+
+/* 轮播图片圆角 */
+.swiper_box image, .slide-image {
+  border-radius: 10px;
+}
+
+.dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 46rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.dots .dot {
+  margin: 0 5rpx;
+  width: 12rpx;
+  height: 5rpx;
+  background: #fff;
+  border-radius: 2rpx;
+  transition: all 0.6s;
+  opacity: 0.5;
+}
+
+.dots .dot.active {
+  width: 12rpx;
+  opacity: 1;
+}
+
+.type-menu {
+  margin: 0 auto;
+  transition: all 0.3s;
+}
+
+.type-img {
+  width: 156rpx;
+  height: 156rpx;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12rpx; /* 增加圆角 */
+  margin-bottom: 10rpx;
+}
+
+.iphoneTop .type-img {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10rpx;
+  border-radius: 12rpx; /* 增加圆角 */
+}
+
+.type-level-box {
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 10px;
+  width: 33%;
+}
+
+.type-level-item {
+  color: #333;
+  font-size: 30rpx; /* 原26rpx + 4rpx */
+}
+
+.type-level-item text {
+  display: block;
+  text-align: center;
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.top-line {
+  width: 100%;
+  height: 1px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #f5f5f5;
+  z-index: 99999;
+}
+
+.bottom-lin {
+  width: 100%;
+  height: 1px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #f5f5f5;
+  z-index: 99999;
+}
+
+.search-box {
+  position: fixed;
+  top: 130rpx;
+  width: 100%;
+  height: 90vh;
+  background-color: #fff;
+  z-index: 9999;
+  overflow: scroll;
+}
+
+.iphonesearch {
+  top: 180rpx;
+}
+
+.goods-box {
+  width: 45%;
+  margin: 20px 0 0 13px;
+  display: inline-block;
+}
+
+.img-box image {
+  width: 100%;
+  display: block;
+  border-radius: 8px; /* 增加圆角 */
+}
+
+.img-box {
+  width: 100%;
+  background-color: #f5f5f5;
+  margin-bottom: 5px;
+  position: relative;
+  border-radius: 8px; /* 增加圆角 */
+  overflow: hidden;
+}
+
+.goods-characteristic {
+  font-size: 26rpx; /* 原22rpx + 4rpx */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #f0ece1;
+  color: #a18d65;
+  height: 35px;
+  line-height: 35px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.goods-characteristic text {
+  padding-left: 5px;
+}
+
+.goods-title {
+  font-size: 32rpx; /* 原28rpx + 4rpx */
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+}
+
+.goods-price {
+  color: #b5272d;
+  font-size: 32rpx; /* 原28rpx + 4rpx */
+  text-align: left;
+  width: 100%;
+  padding: 3px 4px;
+}
+
+.goods-price-naver {
+  color: #999;
+  font-size: 28rpx; /* 原24rpx + 4rpx */
+  line-height: 28px;
+  width: 100%;
+  text-align: right;
+  padding: 0 3px;
+}
+
+.goods-none {
+  margin-top: 25%;
+}
+
+.goods-none image {
+  width: 200rpx;
+  height: 200rpx;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10rpx; /* 增加圆角 */
+}
+
+.goods-none text {
+  font-size: 32rpx; /* 原28rpx + 4rpx */
+  display: block;
+  color: #999;
+  text-align: center;
+  margin-top: 10rpx;
+}
+.goods-list .item{
+	width: 562rpx;
+	position: relative;
+}
+.goods-list .item .image{
+	width: 160rpx;
+	height: 160rpx;
+	border-radius: 12rpx; /* 增加圆角 */
+	overflow: hidden;
+}
+.goods-list .item .image image{
+	width: 160rpx;
+	height: 160rpx;
+	border-radius: 12rpx; /* 增加圆角 */
+}
+.goods-list .item .right{
+	width: 402rpx;
+}
+.goods-list .item .add{
+	position: absolute;
+	right: 30rpx;
+	bottom: 30rpx;
+	width: 50rpx;
+	height: 50rpx;
+	border-radius: 8rpx; /* 改为方形圆角 */
+	background-color: #e64340;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.goods-list .item .add text{
+	font-size: 54rpx; /* 原50rpx + 4rpx */
+	color: #fff !important;
+	line-height: 1;
+}
+.sku-mask {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+.sku-container {
+  position: fixed;
+  width: 100vw;
+  bottom: 90rpx;
+  left: 0;
+  background: #fff;
+  padding: 32rpx 32rpx 0 32rpx;
+}
+.sku-container .close {
+  position: absolute;
+  width: 54rpx;
+  height: 54rpx;
+  top: 16rpx;
+  right: 16rpx;
+  /* border: 1rpx solid #666;
+  border-radius: 50%; */
+}
+.sku-container .sku {
+  border-bottom: 1rpx solid #eee;
+  padding-bottom: 24rpx;
+  margin-bottom: 16rpx;
+}
+.sku-container .sku .t {
+  color: #333;
+  font-size: 32rpx; /* 增加字体大小 */
+}
+.sku-container .sku .items {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sku-container .sku .items text {
+  padding: 8rpx;
+  border: 1rpx solid #999;
+  color: #999;
+  margin: 24rpx 24rpx 0 0;
+  font-size: 30rpx; /* 原26rpx + 4rpx */
+  border-radius: 12rpx;
+}
+.sku-container .sku .items text.active {
+  border: 1rpx solid #e64340;
+  color: #e64340;
+}
+.sku-container .num {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+.sku-container .num .t {
+  color: #333;
+  font-size: 32rpx; /* 增加字体大小 */
+}
+.sku-container .num .num-box {
+  display: flex;
+}
+.sku-container .num .num-box .a {
+  width: 64rpx;
+  height: 64rpx;
+  border: 1rpx solid #999;
+  text-align: center;
+  line-height: 64rpx;
+  font-size: 50rpx; /* 原46rpx + 4rpx */
+  color: #666;
+}
+.sku-container .num .num-box .b {
+  color: #333;
+  line-height: 64rpx;
+  padding: 0 32rpx;
+  border-top: 1rpx solid #999;
+  border-bottom: 1rpx solid #999;
+  font-size: 32rpx; /* 增加字体大小 */
+}
+.sku-btn {
+  width: 100vw;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #e64340;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  font-size: 34rpx; /* 增加字体大小 */
+}
+
+/* 为商品名称文字增加字体大小 */
+.goods-list .item .name {
+  font-size: 32rpx; /* 增加字体大小 */
+}
+
+/* 为已售文字增加字体大小 */
+.goods-list .item .text-gray {
+  font-size: 28rpx; /* 增加字体大小 */
+}
+
+/* 为分类标题增加字体大小 */
+.padding-sm.text-black.text-bold {
+  font-size: 34rpx; /* 增加字体大小 */
+}

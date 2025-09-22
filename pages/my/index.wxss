@@ -1,0 +1,108 @@
+page {
+  background-color: #f5f5f5;
+}
+
+.container {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.userinfo {
+  background: #fff;
+  width: 100%;
+  height: 280rpx; /* 高度降低 */
+  text-align: center;
+  position: relative;
+  border-radius: 20rpx; /* 圆角 */
+  overflow: hidden;
+}
+
+.userinfo-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.userinfo image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 280rpx; /* 同上保持一致 */
+  z-index: 0;
+}
+
+.userinfo-avatar {
+  border-radius: 50%;
+  margin-top: 90rpx; /* 调整下头像位置 */
+  display: inline-block;
+  overflow: hidden;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.iser-info-box {
+  height: 100rpx;
+  text-align: center;
+  display: block;
+}
+
+.userinfo-nickname {
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+/* 公共圆角类 */
+.radius-box {
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+/* 公告 */
+.userinfo-notice {
+  display: flex;
+  background-color: #fff;
+  align-items: center;
+  width: 100%;
+  height: 80rpx;
+}
+
+.userinfo-notice image {
+  width: 36rpx;
+  height: 36rpx;
+  padding-left: 30rpx;
+  padding-right: 20rpx;
+}
+
+.userinfo-notice .notice_swiper {
+  height: 80rpx;
+  width: 85%;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  color: #ab2b2b;
+}
+
+/* 联系客服按钮 */
+.cu-item .contact {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background: none;
+  border: none;
+}
+.cu-item .contact:after {
+  border: none;
+}

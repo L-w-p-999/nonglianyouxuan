@@ -1,0 +1,40 @@
+<navigation id='Navigation' show-search='{{true}}' disable-search-jump="{{disableSearchJump}}" class="fix-top" animation="{{fadeAni}}"></navigation>
+<view class="swiper-container">
+	<swiper class="screen-swiper {{dotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true"
+	 interval="5000" duration="500">
+		<swiper-item wx:for="{{banners}}" wx:key="id" bindtap="tapBanner" data-url="{{item.linkUrl}}">
+			<image src="{{item.picUrl}}" mode="aspectFill"></image>
+		</swiper-item>
+	</swiper>
+</view>
+<view class="index-menu-bg padding bg-white">
+	<view class="index-menu flex">
+		
+	</view>
+	<navigator wx:if="{{aliveRooms.length> 0}}" url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{aliveRooms[0].roomid}}" class="live-ad padding-tb">
+		<image src="../../images/live_ad.png"></image>
+	</navigator>
+	<view class="index-hot flex flex-wrap justify-between">
+		<block wx:for="{{hot}}" wx:key="hot">
+			<navigator hover-class="none" class="hot-item" url="{{item.linkUrl}}">
+				<image src="{{item.picUrl}}"></image>
+			</navigator>
+		</block>
+	</view>
+</view>
+<!-- 需求2：删除拼团和砍价相关代码块 -->
+<view wx:if="{{goodsRecommend.length > 0}}" class="goods-container">
+	<view class="goods-title bg-olive light" style="margin-bottom: 30rpx; border-radius: 10rpx; width:80% ; margin-left: 10%;">
+		
+		<view class="text">{{recommendGoodsTitle}}</view>
+		
+	</view>
+	<view class="goods-list flex justify-between padding-top padding-lr flex-wrap" >
+		<navigator url="/pages/goods-details/index?id={{item.id}}" class="list-item" wx:for="{{goodsRecommend}}" wx:key="id">
+			<image src="{{item.pic}}" mode="aspectFill"></image>
+			<view class="goods-list-title">{{item.name}}</view>
+			<view class="goods-list-text">{{item.characteristic}}</view>
+			<view class="goods-list-money">Ұ{{item.minPrice}}</view>
+		</navigator>
+	</view>
+</view>
