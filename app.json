@@ -1,6 +1,5 @@
 {
 	"pages": [
-	
 		"pages/index/index",
 		"pages/notice/index",
 		"pages/notice/show",
@@ -80,6 +79,9 @@
 			}
 		]
 	},
+	"requiredPrivateInfos": [
+		"chooseAddress"
+	],
 	"usingComponents": {
 		"float-menu": "/components/float-menu/index"
 	},

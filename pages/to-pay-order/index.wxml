@@ -1,8 +1,11 @@
 <import src="/template/login/index.wxml" />
 <view class="container">
+	<!-- 调试信息区域 - 上线前删除 -->
+	
+
 	<view class="goods-list">
 		<view class="list-title">商品列表</view>
-		<view class="a-goods" wx:for-items="{{goodsList}}" wx:key="{{index}}">
+		<view class="a-goods" wx:for="{{goodsList}}" wx:key="index">
 			<view class="img-box">
 				<image src="{{item.pic}}" class="img" />
 			</view>
@@ -23,7 +26,10 @@
 			</view>
 		</view>
 	</view>
+
+	<!-- 配送方式和地址 -->
 	<view class="peisong-way">
+		<!-- 配送方式选择 -->
 		<view class="row-box" wx:if="{{isNeedLogistics > 0}}">
 			<view class="row-label">配送方式</view>
 			<radio-group bindchange="radioChange">
@@ -35,16 +41,24 @@
 				</label>
 			</radio-group>
 		</view>
-		<view class="address-box" wx:if="{{peisongType == 'kd' && isNeedLogistics > 0}}">
-			<view class="add-address" hidden="{{curAddressData}}" bindtap="addAddress">
-				<image src="/images/add-addr.png"></image>
-				<view>新增收货地址</view>
-			</view>
-			<view class="show-address" hidden="{{!curAddressData}}" bindtap="selectAddress">
+
+		<!-- 收货地址区域 - 始终显示 -->
+		<view class="address-box">
+			<!-- 有地址：显示地址信息 -->
+			<view class="show-address" wx:if="{{curAddressData}}" bindtap="selectAddress">
 				<view class="name-tel">{{curAddressData.linkMan}} {{curAddressData.mobile}}</view>
 				<view class="addr-text">{{curAddressData.address}}</view>
+				<view class="change-addr">更换地址 ></view>
+			</view>
+			
+			<!-- 无地址：显示新增按钮 -->
+			<view class="add-address" wx:else bindtap="addAddress">
+				<image src="/images/add-addr.png" style="width: 60rpx; height: 60rpx;"></image>
+				<view style="margin-left: 20rpx;">新增收货地址</view>
 			</view>
 		</view>
+
+		<!-- 备注 -->
 		<view class="row-box">
 			<view class="row-label">备注</view>
 			<view class="right-text">
@@ -52,12 +66,14 @@
 			</view>
 		</view>
 	</view>
-	<view class="peisong-way" hidden="{{hasNoCoupons}}">
+
+	<!-- 优惠券选择 -->
+	<view class="peisong-way" wx:if="{{!hasNoCoupons}}">
 		<view class="row-box" style="border-bottom:none;">
 			<view class="row-label">选择使用优惠券</view>
 		</view>
 		<view class="row-box" style="border-bottom:none;">
-			<picker-view indicator-style="height: 50rpx;" style="width: 100%; height: 150rpx;" value="0" bindchange="bindChangeCoupon">
+			<picker-view indicator-style="height: 50rpx;" style="width: 100%; height: 150rpx;" value="{{[0]}}" bindchange="bindChangeCoupon">
 				<picker-view-column>
 					<view style="line-height: 50px">不使用优惠券</view>
 					<view wx:for="{{coupons}}" wx:key="id" style="line-height: 50px">{{item.money}}元 {{item.name}}</view>
@@ -66,7 +82,7 @@
 		</view>
 	</view>
 
-
+	<!-- 费用明细 -->
 	<view class="goods-info" wx:if="{{(isNeedLogistics > 0 && yunPrice > 0) || (!hasNoCoupons)}}">
 		<view class="row-box" wx:if="{{isNeedLogistics > 0 && yunPrice > 0}}">
 			<view class="row-label">商品金额</view>
@@ -82,6 +98,7 @@
 		</view>
 	</view>
 
+	<!-- 底部结算栏 -->
 	<view class="jiesuan-box safeAreaOldPaddingBttom safeAreaNewPaddingBttom">
 		<view class="left-price">
 			<view class="total">合计：¥ {{allGoodsAndYunPrice - youhuijine}} + {{totalScoreToPay}} 积分</view>
@@ -90,6 +107,7 @@
 	</view>
 </view>
 
+<!-- 支付确认弹窗 -->
 <view class="cu-modal {{showModal?'show':''}}">
 	<view class="cu-dialog">
 		<view class="cu-bar bg-white justify-end">
@@ -101,12 +119,14 @@
 		<view class="padding-xl">
 			您将通过微信支付<text class="text-red text-bold">{{allGoodsAndYunPrice - youhuijine}}</text>元<block wx:if="{{totalScoreToPay > 0}}">,同时扣除<text class="text-red text-bold">{{totalScoreToPay}}</text>积分</block>
 		</view>
-		<view class="cu-bar bg-white flex ">
+		<view class="cu-bar bg-white flex">
 			<view class="action margin-0 flex-sub solid-left" bindtap="hideModal">取消</view>
 			<view class="flex-sub"></view>
-			<view class="action margin-0 flex-sub text-green " bindtap="toPay">
-				<text class="cuIcon-moneybag"></text>微信支付</view>
+			<view class="action margin-0 flex-sub text-green" bindtap="toPay">
+				<text class="cuIcon-moneybag"></text>微信支付
+			</view>
 		</view>
 	</view>
 </view>
+
 <float-menu />

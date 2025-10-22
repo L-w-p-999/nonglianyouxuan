@@ -9,7 +9,7 @@ Page({
 		wxlogin: true,
 		totalScoreToPay: 0,
 		goodsList: [],
-		isNeedLogistics: 0, // 是否需要物流信息
+		isNeedLogistics: 1, // 是否需要物流信息
 		allGoodsPrice: 0,
 		yunPrice: 0,
 		allGoodsAndYunPrice: 0,
@@ -27,6 +27,7 @@ Page({
 		showModal: false, //是否显示微信支付modal
 		payAmount: null,
 		payId: null,
+		curAddressData: null, // 当前收货地址
 	},
 	onShow() {
 		AUTH.checkHasLogined().then(isLogined => {
@@ -65,12 +66,22 @@ Page({
 			allowSelfCollection: allowSelfCollection,
 			peisongType: this.data.peisongType
 		});
-		this.initShippingAddress()
+		
+		// 初始化收货地址
+		await this.initShippingAddress()
+		
+		// 打印调试信息
+		console.log('=== 订单确认页面状态 ===')
+		console.log('是否需要物流:', this.data.isNeedLogistics)
+		console.log('配送方式:', this.data.peisongType)
+		console.log('当前地址:', this.data.curAddressData)
+		console.log('商品列表:', this.data.goodsList)
 	},
 
 	onLoad(e) {
 		let _data = {
-			isNeedLogistics: 1
+			isNeedLogistics: 1, // 默认需要物流
+			curAddressData: null // 初始化为空
 		}
 		if (e.orderType) {
 			_data.orderType = e.orderType
@@ -96,14 +107,6 @@ Page({
 	goCreateOrder() {
 		wx.requestSubscribeMessage({
 			tmplIds: ['Z0hQYItP4ct2VbxbWMGp61SH0_4zmDB-52WQpHQ1jco'], 
-			//订单状态通知    温馨提示
-			// {{thing1.DATA}}
-			// 订单编号
-
-			// {{character_string2.DATA}}
-			// 订单状态
-
-			// {{phrase5.DATA}}
 			success(res) {
 
 			},
@@ -132,17 +135,27 @@ Page({
 		if (that.data.pingtuanOpenId) {
 			postData.pingtuanOpenId = that.data.pingtuanOpenId
 		}
-		if (that.data.isNeedLogistics > 0 && postData.peisongType == 'kd') {
-			if (!that.data.curAddressData && loginToken) {
+		
+		// 快递配送时，检查地址（不再判断 isNeedLogistics）
+		if (postData.peisongType == 'kd') {
+			if (!that.data.curAddressData && loginToken && e) {
+				// 只在真正提交订单时(e为true)才检查地址
 				wx.hideLoading();
 				wx.showModal({
-					title: '友情提示',
-					content: '请先设置您的收货地址！',
-					showCancel: false
+					title: '提示',
+					content: '请先添加收货地址',
+					confirmText: '去添加',
+					success(res) {
+						if (res.confirm) {
+							that.addAddress()
+						}
+					}
 				})
 				return;
 			}
-			if (postData.peisongType == 'kd') {
+			
+			// 有地址时设置地址信息
+			if (that.data.curAddressData) {
 				postData.provinceId = that.data.curAddressData.provinceId;
 				postData.cityId = that.data.curAddressData.cityId;
 				if (that.data.curAddressData.districtId) {
@@ -154,6 +167,7 @@ Page({
 				postData.code = that.data.curAddressData.code;
 			}
 		}
+		
 		if (that.data.curCoupon) {
 			postData.couponId = that.data.curCoupon.id;
 		}
@@ -186,15 +200,12 @@ Page({
 				that.getMyCoupons();
 				return;
 			}
-			// 下单成功，跳转到订单管理界面
+			// 下单成功，跳转到支付
 			that.setData({
 				showModal: true,
 				payAmount: res.data.amountReal,
 				payId: res.data.id
 			})
-			// wx.redirectTo({
-			//   url: "/pages/order-list/index"
-			// });
 		})
 	},
 	toPay() {
@@ -223,14 +234,18 @@ Page({
 	},
 	async initShippingAddress() {
 		const res = await WXAPI.defaultAddress(wx.getStorageSync('token'))
-		if (res.code == 0) {
+		if (res.code == 0 && res.data && res.data.info) {
+			// 有默认地址
 			this.setData({
 				curAddressData: res.data.info
 			});
+			console.log('已加载默认地址:', res.data.info)
 		} else {
+			// 没有默认地址
 			this.setData({
 				curAddressData: null
 			});
+			console.log('暂无收货地址')
 		}
 		this.processYunfei();
 	},
@@ -240,17 +255,23 @@ Page({
 		var isNeedLogistics = 0;
 		var allGoodsPrice = 0;
 
-
 		let inviter_id = 0;
 		let inviter_id_storge = wx.getStorageSync('referrer');
 		if (inviter_id_storge) {
 			inviter_id = inviter_id_storge;
 		}
+		
 		for (let i = 0; i < goodsList.length; i++) {
 			let carShopBean = goodsList[i];
+			// 检查商品是否需要物流
 			if (carShopBean.logistics || carShopBean.logisticsId) {
 				isNeedLogistics = 1;
 			}
+			
+			// 调试：打印商品信息
+			console.log('商品', i, ':', carShopBean.name)
+			console.log('  - logistics:', carShopBean.logistics)
+			console.log('  - logisticsId:', carShopBean.logisticsId)
 			allGoodsPrice += carShopBean.price * carShopBean.number;
 
 			var goodsJsonStrTmp = '';
@@ -267,14 +288,21 @@ Page({
 			goodsJsonStrTmp += '{"goodsId":' + carShopBean.goodsId + ',"number":' + carShopBean.number +
 				',"propertyChildIds":"' + carShopBean.propertyChildIds + '","logisticsType":0, "inviter_id":' + inviter_id + '}';
 			goodsJsonStr += goodsJsonStrTmp;
-
-
 		}
 		goodsJsonStr += "]";
+		
+		// 临时强制需要物流 - 用于测试
+		if (isNeedLogistics === 0) {
+			console.warn('⚠️ 商品未设置物流信息，强制启用物流功能')
+			isNeedLogistics = 1
+		}
+		
 		this.setData({
 			isNeedLogistics: isNeedLogistics,
 			goodsJsonStr: goodsJsonStr
 		});
+		
+		console.log('最终 isNeedLogistics:', isNeedLogistics)
 		this.createOrder();
 	},
 	addAddress: function() {
@@ -323,7 +351,6 @@ Page({
 			});
 			return;
 		}
-		//console.log("selIndex:" + selIndex);
 		this.setData({
 			youhuijine: this.data.coupons[selIndex].money,
 			curCoupon: this.data.coupons[selIndex]
@@ -334,5 +361,23 @@ Page({
 			peisongType: e.detail.value
 		})
 		this.processYunfei()
+	},
+	
+	// 调试方法：清空地址测试 - 上线前删除
+	debugClearAddress() {
+		this.setData({
+			curAddressData: null,
+			isNeedLogistics: 1,
+			peisongType: 'kd'
+		})
+		wx.showToast({
+			title: '已清空地址，应该能看到新增按钮了',
+			icon: 'none',
+			duration: 2000
+		})
+		console.log('=== 调试：强制清空地址 ===')
+		console.log('curAddressData:', this.data.curAddressData)
+		console.log('isNeedLogistics:', this.data.isNeedLogistics)
+		console.log('peisongType:', this.data.peisongType)
 	},
 })
