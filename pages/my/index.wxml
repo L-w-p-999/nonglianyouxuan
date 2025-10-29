@@ -77,21 +77,9 @@
 			<view class="cuIcon-location text-blue text-xxl"></view>
 			<text>地址管理</text>
 		</view>
-		<view class="cu-item" data-url="/pages/maidan/index" bindtap="navigateToPage">
-			<view class="cuIcon-shop text-red text-xxl"></view>
-			<text>优惠买单</text>
-		</view>
 		<view class="cu-item" data-url="/pages/fav-list/index" bindtap="navigateToPage">
 			<view class="cuIcon-favor text-yellow text-xxl"></view>
 			<text>收藏记录</text>
-		</view>
-		<view class="cu-item" data-url="/pages/my-pintuan/index" bindtap="navigateToPage">
-			<view class="cuIcon-goods text-mauve text-xxl"></view>
-			<text>我的拼团</text>
-		</view>
-		<view class="cu-item" data-url="/pages/my-kanjia/index" bindtap="navigateToPage">
-			<view class="cuIcon-tag text-orange text-xxl"></view>
-			<text>我的砍价</text>
 		</view>
 		<view class="cu-item" style="position: relative;">
 			<view class="cuIcon-service text-purple text-xxl"></view>

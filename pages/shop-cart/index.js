@@ -132,16 +132,23 @@ Page({
     this.shippingCarInfo()
   },
   async jianBtnTap(e) {
-    const index = e.currentTarget.dataset.index;
-    const item = this.data.shippingCarInfo.items[index]
-    const number = item.number-1
-    if (number <= 0) {
-      return
-    }
-    const token = wx.getStorageSync('token')
-    const res = await WXAPI.shippingCarInfoModifyNumber(token, item.key, number)
-    this.shippingCarInfo()
-  },
+  const index = e.currentTarget.dataset.index;
+  const item = this.data.shippingCarInfo.items[index];
+  const number = item.number - 1;
+  const token = wx.getStorageSync('token');
+
+  if (number <= 0) {
+    // 数量减到0，直接移除该商品
+    await WXAPI.shippingCarInfoRemoveItem(token, item.key);
+    this.shippingCarInfo(); // 重新加载购物车
+    return;
+  }
+
+  // 否则正常修改数量
+  const res = await WXAPI.shippingCarInfoModifyNumber(token, item.key, number);
+  this.shippingCarInfo();
+},
+
   cancelLogin() {
     this.setData({
       wxlogin: true
