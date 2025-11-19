@@ -7,7 +7,27 @@ Page({
       goodsList:[]
     },
     onLoad:function(e){
-      var orderId = e.id;
+      console.log('========== 订单详情页加载 ==========');
+      console.log('接收到的参数:', JSON.stringify(e, null, 2));
+      
+      // 兼容多种参数名：id、orderId、out_trade_no（微信订单中心可能使用的参数名）
+      var orderId = e.id || e.orderId || e.out_trade_no;
+      
+      console.log('解析后的订单ID:', orderId);
+      
+      if (!orderId) {
+        console.error('未获取到订单ID，参数:', e);
+        wx.showModal({
+          title: '提示',
+          content: '订单信息有误，请重新进入',
+          showCancel: false,
+          success: function() {
+            wx.navigateBack();
+          }
+        });
+        return;
+      }
+      
       this.data.orderId = orderId;
       this.setData({
         orderId: orderId,

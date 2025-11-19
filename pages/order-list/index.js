@@ -118,13 +118,27 @@ Page({
 		})
 	},
 	_toPayTap: function(orderId, money) {
+		console.log('========== 订单列表-发起支付 ==========');
+		console.log('订单ID:', orderId);
+		console.log('支付金额:', money);
+		
 		const _this = this
 		if (money <= 0) {
+			console.log('支付金额为0，使用余额支付...');
 			// 直接使用余额支付
 			WXAPI.orderPay(wx.getStorageSync('token'), orderId).then(function(res) {
+				console.log('余额支付结果:', JSON.stringify(res, null, 2));
+				if (res.code == 0) {
+					console.log('余额支付成功');
+				} else {
+					console.log('余额支付失败:', res.msg);
+				}
 				_this.onShow();
+			}).catch(function(err) {
+				console.error('余额支付异常:', err);
 			})
 		} else {
+			console.log('需要微信支付，金额:', money);
 			wxpay.wxpay('order', money, orderId, "/pages/order-list/index");
 		}
 	},
