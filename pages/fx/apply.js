@@ -78,7 +78,7 @@ Page({
   },
   bindSave(){
     wx.requestSubscribeMessage({
-      tmplIds: ['I6jGwax_mL2M_0rlEoIpf9T9eaWQ_G-QTZFcoP4lviU'],
+      tmplIds: ['heoX-5YRtnCqipBrytX0E5BhgK9lRUekdWrm0hEYQtA'],
       success(res) {
 
       },

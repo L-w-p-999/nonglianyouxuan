@@ -106,7 +106,7 @@ Page({
 	},
 	goCreateOrder() {
 		wx.requestSubscribeMessage({
-			tmplIds: ['Z0hQYItP4ct2VbxbWMGp61SH0_4zmDB-52WQpHQ1jco'], 
+			tmplIds: ['0R_VedqY0j-ghYDpbxibaTUKoFr0S8D7ZPwSKpw2gwY'], 
 			success(res) {
 
 			},
@@ -209,22 +209,38 @@ Page({
 		})
 	},
 	toPay() {
+		console.log('========== 订单确认页-发起支付 ==========');
+		console.log('支付金额:', this.data.payAmount);
+		console.log('订单ID:', this.data.payId);
+		console.log('需要积分:', this.data.totalScoreToPay);
+		
 		if (this.data.totalScoreToPay > 0) {
+			console.log('需要积分支付，查询用户积分...');
 			WXAPI.userAmount(wx.getStorageSync('token')).then(res => {
+				console.log('用户积分查询结果:', JSON.stringify(res, null, 2));
 				if (res.data.score < this.data.totalScoreToPay) {
+					console.log('积分不足，当前积分:', res.data.score, '需要积分:', this.data.totalScoreToPay);
 					wx.showToast({
 						title: '您的积分不足，无法支付',
 						icon: 'none'
 					})
 					return;
 				} else {
+					console.log('积分充足，发起支付...');
 					wxpay.wxpay('order', this.data.payAmount, this.data.payId,
-						"/pages/order-list/index?type=0");
+						"/pages/order-list/index", {
+							goodsList: this.data.goodsList // 传递商品列表用于生成description
+						});
 				}
+			}).catch(err => {
+				console.error('查询用户积分失败:', err);
 			})
 		} else {
+			console.log('无需积分，直接发起支付...');
 			wxpay.wxpay('order', this.data.payAmount, this.data.payId,
-				"/pages/order-list/index?type=1");
+				"/pages/order-list/index", {
+					goodsList: this.data.goodsList // 传递商品列表用于生成description
+				});
 		}
 	},
 	hideModal() {
